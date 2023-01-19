@@ -9456,7 +9456,7 @@ a.badge-soft-dark:focus {
 .content {
     direction: ltr;
     flex: 1;
-    padding: 2.5rem 2.5rem 1.5rem;
+    /* padding: 2.5rem 2.5rem 1.5rem; */
 }
 @media (max-width: 767.98px) {
     .content {

@@ -12,20 +12,22 @@
     <link href="@asset_version('css/app.css')" rel="stylesheet">
     <link href="@asset_version('css/light.css')" rel="stylesheet">
     <link href="@asset_version('css/custom.css')" rel="stylesheet">
-    <!-- <link href="@assets_version('css/document.css')" rel="stylesheet"> -->
+    <link href="@asset_version('css/ink.css')" rel="stylesheet">
+    <link href="@asset_version('css/document.css')" rel="stylesheet">
 
     @stack('page-styles')
-
     <script src="@asset_version('js/app.js')"></script>
     <script src="@asset_version('ckeditor/ckeditor.js')"></script>
     <script src="@asset_version('js/custom.js')"></script>
-    <!-- <script src="@asset_version('js/custom.js')"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script src="lib/leaflet.browser.print.min.js"></script>
     <script src="https://unpkg.com/imask"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+    <script src="../../../lib/leaflet.browser.print.min.js"></script>
+    
+    
 </head>
 
 <body class="{{str_replace('.', '-', Route::currentRouteName())}} @guest guest @else logged-in @endguest" data-sidebar-position="left" data-sidebar-behavior="sticky">

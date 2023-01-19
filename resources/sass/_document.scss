@@ -1,28 +1,24 @@
 .wrapper-document,
 .navbar-document {
-    /* border: 1px solid red; */
-    width: 900px;
+    width: 47vw;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
 }
 
 .wrapper-document {
-    /* border: 1px solid red; */
     box-shadow: 0px 4px 10px rgb(0 0 0 / 25%);
     margin-top: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
 }
 
 .navbar-document {
-    /* border: 1px solid red; */
     display: flex;
     justify-content: space-between;
     flex-flow: row nowrap;
 }
 
 .map_content {
-    /* border: 1px solid red; */
     margin: 0 auto;
 }
 
@@ -39,7 +35,6 @@
 }
 
 .title {
-    /* border: 1px solid red; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,17 +48,9 @@
 }
 
 .date_num {
-    /* border: 1px solid red; */
-    /* position: relative; */
     text-align: right;
-    width: 100%;
+    width: 96vw;
     padding-right: 30px;
-}
-
-.date_num>div {}
-
-.num {
-    /* top: -20px; */
 }
 
 .table {
@@ -91,12 +78,65 @@ table>tbody .owner_info {
     margin: 30px;
 }
 
-.qr_code {
-    /* border: 1px solid red; */
-}
-
 #qrcode>img {
     width: 80px;
     height: 80px;
-    /* margin-right: 20px; */
 }
+
+@media (max-width: 576px) {
+    .giprozem_logo {
+        height: 40px;
+        margin: 15px;
+    }
+
+    .navbar-document {
+        display: inline-block;
+    }
+
+    .title {
+        text-align: center;
+        display: block;
+    }
+
+    .table_data,
+    .map_content,
+    .wrapper-document,
+    .navbar-document,
+    .btn_wrap {
+        width: 96vw;
+    }
+
+    .map_content {
+        margin: 0;
+    }
+
+    .qr_code {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+
+    .navbar-document {
+        position: relative;
+    }
+}
+
+// @media (min-width: 576px) {
+//     .container-sm, .container {
+//       max-width: 540px;
+//     }
+//   }
+//   @media (min-width: 768px) {
+//     .container-md, .container-sm, .container {
+//       max-width: 720px;
+//     }
+//   }
+//   @media (min-width: 992px) {
+//     .container-lg, .container-md, .container-sm, .container {
+//       max-width: 960px;
+//     }
+//   }
+//   @media (min-width: 1200px) {
+//     .container-xl, .container-lg, .container-md, .container-sm, .container {
+//   max-width: 1140px;
+// }

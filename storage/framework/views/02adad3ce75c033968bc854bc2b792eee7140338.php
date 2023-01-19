@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 <div class="content">
     <form action="#" class="form" id="form_ink">
         <div class="form__block">
@@ -129,8 +129,8 @@
         </div>
     </div>
 </div>
-@endsection
-@push('page-scripts')
+<?php $__env->stopSection(); ?>
+<?php $__env->startPush('page-scripts'); ?>
 <script>
     $(document).ready(function() {
         let recapcha = document.getElementById('recapcha');
@@ -372,4 +372,5 @@
         }).addTo(map)
     }
 </script>
-@endpush
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OSPanel\domains\pachva_a\resources\views/ink.blade.php ENDPATH**/ ?>

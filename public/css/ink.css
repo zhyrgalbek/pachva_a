@@ -1,0 +1,59 @@
+.error {
+    border: 1px solid red;
+}
+
+.btn-primary {
+    background-color: #366DC7;
+    border: #366DC7;
+}
+
+.spinnerBlock{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.color{
+    background-color: 'red';
+}
+
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+}
+
+th, td {
+    color: black;
+}
+
+.btn_wrap {
+    width: 50vw;
+    margin: 5px auto;
+}
+
+.input-group{
+    position: relative;
+}
+
+.list-group{
+    position: absolute;
+    top: 36px;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.list-group .list-group-item{
+    border: none;
+}

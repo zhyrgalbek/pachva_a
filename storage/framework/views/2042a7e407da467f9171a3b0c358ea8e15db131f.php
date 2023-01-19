@@ -1,9 +1,9 @@
-@extends('layouts.app')
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 <!-- <document-component></document-component> -->
 <div class="wrapper-document">
     <nav class="navbar-document">
-        <!-- <img class="giprozem_logo" src="{{ asset('/images/document/giprozem-logo.png') }}" alt="giprozem-logo"> -->
+        <!-- <img class="giprozem_logo" src="<?php echo e(asset('/images/document/giprozem-logo.png')); ?>" alt="giprozem-logo"> -->
         <img class="giprozem_logo" src="/images/document/giprozem-logo.png" alt="giprozem-logo">
         <div class="title">
             <div>
@@ -117,8 +117,8 @@
     </div>
     
 </div>
-@endsection
-@push('page-scripts')
+<?php $__env->stopSection(); ?>
+<?php $__env->startPush('page-scripts'); ?>
 <script>
     $(document).ready(function() {
         let map = L.map('map_document').setView([42.636329, 78.226459], 14)
@@ -178,4 +178,5 @@
 
     });
 </script>
-@endpush
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OSPanel\domains\pachva_a\resources\views/document.blade.php ENDPATH**/ ?>

@@ -1359,7 +1359,7 @@ body:not([data-sidebar-position="right"]) .sidebar-toggle {
 .content {
     direction: ltr;
     flex: 1;
-    padding: 1.5rem 0 1.5rem;
+    /* padding: 1.5rem 0 1.5rem; */
 }
 
 .nav-flag,
@@ -2027,10 +2027,11 @@ strong {
 .content {
     min-height: 70vh;
 }
+
 .form {
     /* border: 1px solid red; */
     margin: 0 auto;
-    width: 500px;
+    width: 25%;
     margin-top: 50px;
     display: flex;
     direction: row;
