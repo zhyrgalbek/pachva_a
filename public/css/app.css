@@ -23046,7 +23046,6 @@ readers do not read off random characters that represent icons */
 }
 
 .map_content {
-  /* border: 1px solid red; */
   margin: 0 auto;
 }
 
@@ -23182,4 +23181,21 @@ th, td {
 
 .list-group .list-group-item {
   border: none;
+}
+
+.list-group .list-group-item:hover {
+  background-color: #e0e0e0;
+  cursor: pointer;
+}
+
+.list-group .list-group-item.activeINK {
+  background-color: #e0e0e0;
+}
+
+.form_header {
+  text-align: center;
+}
+
+.form_header_text {
+  text-align: center;
 }

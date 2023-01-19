@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Auth::routes(['register' => true]);
+Auth::routes();
 // Route::get('/', [App\Http\Controllers\DocumentController::class, 'show']);
-Route::get('/register', [\App\Http\Controllers\Auth\RegisterController::class, 'index'])->name('register');
-Route::post('/register', [\App\Http\Controllers\Auth\RegisterController::class, 'redirectUrl'])->name('registerRedirect');
+// Route::get('/register', [\App\Http\Controllers\Auth\RegisterController::class, 'index'])->name('register');
+// Route::post('/register', [\App\Http\Controllers\Auth\RegisterController::class, 'redirectUrl'])->name('registerRedirect');
 
 Route::get('/request', [\App\Http\Controllers\StaticPagesController::class, 'request'])->name('request');
 Route::get('/servicesPage', [\App\Http\Controllers\StaticPagesController::class, 'servicesPage'])->name('servicesPage');

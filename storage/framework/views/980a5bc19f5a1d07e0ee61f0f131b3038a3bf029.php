@@ -30,14 +30,8 @@
 
 <body class="<?php echo e(str_replace('.', '-', Route::currentRouteName())); ?> <?php if(auth()->guard()->guest()): ?> guest <?php else: ?> logged-in <?php endif; ?>" data-sidebar-position="left" data-sidebar-behavior="sticky">
     <div id="app">
-        <?php if(auth()->guard()->guest()): ?>
-        <?php echo $__env->make('layouts.navbarGuest', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-        <?php echo $__env->yieldContent('content'); ?>
-        <?php if(request()->routeIs('services.contact')): ?>
-        <?php echo $__env->make('openData.openData', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-        <?php endif; ?>
-        <?php echo $__env->make('layouts.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-        <?php else: ?>
+        
+        <?php if(Auth::user() && Auth::user()->hasRole('contact')): ?>
         <div class="wrapper">
             <?php echo $__env->make('layouts.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             <div class="main">
@@ -48,6 +42,13 @@
                 <?php echo $__env->make('layouts.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             </div>
         </div>
+        <?php else: ?>
+        <?php echo $__env->make('layouts.navbarGuest', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        <?php echo $__env->yieldContent('content'); ?>
+        <?php if(request()->routeIs('services.contact')): ?>
+        <?php echo $__env->make('openData.openData', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        <?php endif; ?>
+        <?php echo $__env->make('layouts.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         <?php endif; ?>
         <?php echo $__env->yieldPushContent('page-modals'); ?>
         <?php echo $__env->make('layouts.modals', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

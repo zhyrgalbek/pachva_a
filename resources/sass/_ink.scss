@@ -57,3 +57,18 @@ th, td {
 .list-group .list-group-item{
     border: none;
 }
+.list-group .list-group-item:hover{
+    background-color: rgb(224, 224, 224);
+
+    cursor: pointer;
+}
+.list-group .list-group-item.activeINK{
+    background-color: rgb(224, 224, 224);
+}
+.form_header{
+    text-align: center;
+}
+
+.form_header_text{
+    text-align: center;
+}

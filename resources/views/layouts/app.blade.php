@@ -30,14 +30,8 @@
 
 <body class="{{str_replace('.', '-', Route::currentRouteName())}} @guest guest @else logged-in @endguest" data-sidebar-position="left" data-sidebar-behavior="sticky">
     <div id="app">
-        @guest
-        @include('layouts.navbarGuest')
-        @yield('content')
-        @if(request()->routeIs('services.contact'))
-        @include('openData.openData')
-        @endif
-        @include('layouts.footer')
-        @else
+        {{-- @guest --}}
+        @if(Auth::user() && Auth::user()->hasRole('contact'))
         <div class="wrapper">
             @include('layouts.sidebar')
             <div class="main">
@@ -48,6 +42,13 @@
                 @include('layouts.footer')
             </div>
         </div>
+        @else
+        @include('layouts.navbarGuest')
+        @yield('content')
+        @if(request()->routeIs('services.contact'))
+        @include('openData.openData')
+        @endif
+        @include('layouts.footer')
         @endguest
         @stack('page-modals')
         @include('layouts.modals')
