@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Auth::routes(['register' => true]);
+Auth::routes();
 // Route::get('/', [App\Http\Controllers\DocumentController::class, 'show']);
-Route::get('/register', [\App\Http\Controllers\Auth\RegisterController::class, 'index'])->name('register');
-Route::post('/register', [\App\Http\Controllers\Auth\RegisterController::class, 'redirectUrl'])->name('registerRedirect');
+// Route::get('/register', [\App\Http\Controllers\Auth\RegisterController::class, 'index'])->name('register');
+// Route::post('/register', [\App\Http\Controllers\Auth\RegisterController::class, 'redirectUrl'])->name('registerRedirect');
 
 Route::get('/request', [\App\Http\Controllers\StaticPagesController::class, 'request'])->name('request');
 Route::get('/servicesPage', [\App\Http\Controllers\StaticPagesController::class, 'servicesPage'])->name('servicesPage');
@@ -67,7 +67,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/profile/password', [\App\Http\Controllers\UserController::class, 'profile_password'])->name('profile.password');
     Route::patch('/profile/update/password', [\App\Http\Controllers\UserController::class, 'profile_update_password'])->name('profile.update.password');
     Route::get('/lang', [\App\Http\Controllers\LanguageController::class, 'languages'])->name('languages');
+    Route::get('/ink', [App\Http\Controllers\INKController::class, 'show'])->name('ink');
 });
+
+Route::get('/ink/getDoc', [App\Http\Controllers\INKController::class, 'getDoc'])->name('inkGetDoc');
 
 Route::group(['prefix' => 'filemanager', 'middleware' => ['web', 'auth', 'permission:file-manager']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
@@ -78,6 +81,3 @@ Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controller
 Route::get('test', function () {
     dd(get_loaded_extensions());
 });
-
-Route::get('document', [App\Http\Controllers\documentController::class, 'show']);
-Route::get('ink', [App\Http\Controllers\INKController::class, 'show'])->name('ink');

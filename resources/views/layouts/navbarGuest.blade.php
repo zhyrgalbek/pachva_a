@@ -12,13 +12,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
+
                 <li @if (request()->routeIs('services.contact*')) class="active" @endif><a class="nav-link" href="{{ route('services.contact') }}">{{__('Open data')}}</a></li>
                 <li @if (request()->routeIs('rpas')) class="active" @endif><a class="nav-link" href="{{ route('rpas') }}">{{__('RPAS')}}</a></li>
                 <li @if (request()->routeIs('servicesPage')) class="active" @endif><a class="nav-link" href="{{ route('servicesPage') }}">{{__('Services')}}</a></li>
                 <li @if (request()->routeIs('sampleReceivePage')) class="active" @endif><a class="nav-link" href="{{ route('sampleReceivePage') }}">{{__('Sampling points')}}</a></li>
                 <li @if (request()->routeIs('request')) class="active" @endif><a class="nav-link" href="{{ route('request') }}">{{__('Request')}}</a></li>
-                <li @if (request()->routeIs('ink')) class="active" @endif><a class="nav-link" href="{{ route('ink') }}">{{__('ink')}}</a></li>
-                
+
+                @if (!Auth::guest())
+                    <li @if (request()->routeIs('ink')) class="active" @endif><a class="nav-link" href="{{ route('ink') }}">{{__('ink')}}</a></li>
+                @endif
+
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">

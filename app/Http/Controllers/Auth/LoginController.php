@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
@@ -76,6 +77,10 @@ class LoginController extends Controller
         }
 
         if ($this->attemptLogin($request)) {
+            if (auth()->user()->hasRole('bank')) {
+                $this->redirectTo = route('ink');
+            }
+
             return $this->sendLoginResponse($request);
         }
         // If the login attempt was unsuccessful we will increment the number of attempts

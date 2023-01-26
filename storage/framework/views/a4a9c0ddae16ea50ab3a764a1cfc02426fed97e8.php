@@ -1,24 +1,22 @@
 
 <?php $__env->startSection('content'); ?>
 <!-- <ink-component></ink-component> -->
-<div class="content">
-    <form action="#" class="form hide" id="form_ink">
-        <div class="form__block">
-            <label for="#" class="input__label">Введите ИНК</label>
-            <div class="input-group">
-                <input type="text" class="form-control" id="ink" required placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2" v-model="ink">
-                <!-- <ul class="list-group"> -->
-                    <!-- <li class="list-group-item">A second item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A fourth item</li>
-                    <li class="list-group-item">And a fifth one</li> -->
-                <!-- </ul> -->
-                <div class="invalid-feedback" id="error">
+<div class="container content">
+    <div id="form_ink">
+        <h4 class="my-3 form_header">Электронная выписка - это официальный документ, удостоверяющий права правообладателя</h2>
+        <p class="form_header_text">а также подтверждающий характеристики земельного участка, как объекта недвижимости.</p>
+        <form action="#" class="form hide">
+            <div class="form__block">
+                <label for="#" class="input__label">Введите ИНК</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="ink" required placeholder="" autocomplete="off" aria-label="Recipient's username" aria-describedby="basic-addon2" v-model="ink">
+                    <div class="invalid-feedback" id="error">
+                    </div>
                 </div>
             </div>
-        </div>
-        <button type="submit" class="btn btn-primary form_submit btn-lg">Проверить</button>
-    </form>
+            <button type="submit" class="btn btn-primary form_submit btn-lg">Проверить</button>
+        </form>
+    </div>
     <div class="document hide" id="document">
         <div class="wrapper-document">
             <nav class="navbar-document">
@@ -158,7 +156,6 @@
         let doc = document.getElementById('document');
         let Modal = document.getElementById('Modal');
         let spinnerBlock = document.getElementById('spinnerBlock');
-        let responseData = [];
         var paramsString = document.location.search; // ?page=4&limit=10&sortby=desc  
         var searchParams = new URLSearchParams(paramsString);
 
@@ -166,18 +163,22 @@
             postQql(searchParams.get("ink"), responseData, doc, form)
         }
 
-
         var maskOptions = {
             mask: '000-00-000-000-00-0000-0000'
         };
         var mask = IMask(input, maskOptions);
 
-        input.addEventListener('keyup', function() {
+        input.addEventListener('keyup', async function(e) {
             if (input.value.length < 21) {
                 error.innerText = '';
                 input.classList.remove('error');
             }
-            getInk(input.value)
+            if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                klavisha = e.key;
+                moveKey(klavisha, input)
+                return
+            }
+            getInk(input, input.value, doc, form)
         })
 
         form.addEventListener('submit', function(e) {
@@ -191,7 +192,7 @@
                 error.innerText = '';
                 input.classList.remove('error');
             }
-            postQql(input.value, responseData, doc, form)
+            postQql(input.value, doc, form)
         })
         $('#pdf_btn').click(function() {
             window.print();
@@ -200,37 +201,81 @@
             };
         });
         L.control.browserPrint().addTo(map);
-
-
     })
 
-    function renderUl(arr) {
-        // const ul = document.createElement('ul');
-        // ul.classList.add('list-group');
-        // const li = document.createElement('li');
-        // li.classList.add('list-group-item');
-        // li.append(elem.ink_code);
-        // ul.append(li)
-        // console.log(arr)
-        // console.log(Array.isArray(arr))
-        // arr.foreach(elem => console.log(elem))
-        // input.parentElement.append(ul)
-        // console.log(input.parentElement)
+    let i = -1;
+
+    function moveKey(klavisha, input) {
+        const ul = document.querySelector('.list-group');
+        let max = ul.childNodes.length - 1;
+        for (let i = 0; i <= max; i++) {
+            ul.childNodes[i].classList.remove('activeINK');
+        }
+        if (klavisha === 'ArrowDown') {
+            i++;
+            if (i > max) {
+                i = 0;
+            }
+            // console.log(ul.childNodes[i]);
+            ul.childNodes[i].classList.add('activeINK');
+            input.value = ul.childNodes[i].innerText;
+        }
+        if (klavisha === 'ArrowUp') {
+            i--;
+            if (i < 0) {
+                i = max;
+            }
+            // console.log(ul.childNodes[i]);
+            ul.childNodes[i].classList.add('activeINK');
+            input.value = ul.childNodes[i].innerText;
+        }
+        console.log(i)
+    }
+
+    function addText(input, text, doc, form) {
+        input.value = text;
+        postQql(input.value, doc, form)
+    }
+
+    function renderUl(input, arr, doc, form) {
+        const oldUl = document.querySelector('.list-group')
+        if (oldUl) {
+            input.parentElement.removeChild(oldUl);
+        }
+        if (arr.length === 0 && oldUl) {
+            input.parentElement.removeChild(oldUl);
+            return
+        }
+        const ul = document.createElement('ul');
+        ul.classList.add('list-group');
+        arr.forEach(element => {
+            const li = document.createElement('li');
+            li.classList.add('list-group-item');
+            li.addEventListener('click', function() {
+                addText(input, this.innerHTML, doc, form)
+            })
+            li.append(element.ink_code);
+            ul.append(li)
+        });
+        input.parentElement.append(ul)
     }
 
 
-    async function getInk(text) {
+    async function getInk(input, text, doc, form) {
         try {
-            const response = await fetch(`http://185.138.184.12:8111/search_ink_hub/?search=${text}`);
+            const response = await fetch(`http://185.138.184.8:8111/search_ink_hub/?search=${text}`);
+            if (response.status !== 200) {
+                throw new Error('error');
+            }
             const data = await response.json()
             // console.log(data.list_ink_code)
-            renderUl(data.list_ink_code)
+            renderUl(input, data.list_ink_code, doc, form)
         } catch (error) {
             console.log(error)
         }
     }
 
-    async function postQql(ink, responseData, doc, form) {
+    async function postQql(ink, doc, form) {
         try {
             spinnerBlock.classList.remove('hide');
             const query = `query MyQuery {
@@ -253,7 +298,7 @@
     main_map
   }
 }`;
-            const response = await fetch('http://185.138.184.12:8087/v1/graphql', {
+            const response = await fetch('http://185.138.184.8:8087/v1/graphql', {
                 method: 'POST',
                 headers: {
                     "x-hasura-admin-secret": "RS0wqjDPes994GzytgYqoxeYkspM66f47FenuK6HSjpCdSGAGLxxEKmM8tB3vEra",
@@ -325,7 +370,8 @@
 
 
 
-        let map = L.map('map_document').setView([dataInfo.latitude, dataInfo.longitude], 14)
+        // let map = L.map('map_document').setView([dataInfo.latitude, dataInfo.longitude], 14)
+        let map = L.map('map_document').setView([polygon[0][1], polygon[0][0]], 14)
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'

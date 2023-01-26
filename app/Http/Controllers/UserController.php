@@ -19,13 +19,13 @@ class UserController extends Controller
      */
     function __construct()
     {
-        $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index', 'store']]);
-        $this->middleware('permission:user-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:user-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:user-delete', ['only' => ['destroy']]);
-        $this->middleware('permission:profile', ['only' => ['profile']]);
-        $this->middleware('permission:profile-edit', ['only' => ['profile_edit', 'profile_update']]);
-        $this->middleware('permission:profile-password', ['only' => ['profile_password', 'profile_update_password']]);
+    //     $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index', 'store']]);
+    //     $this->middleware('permission:user-create', ['only' => ['create', 'store']]);
+    //     $this->middleware('permission:user-edit', ['only' => ['edit', 'update']]);
+    //     $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+    //     $this->middleware('permission:profile', ['only' => ['profile']]);
+    //     $this->middleware('permission:profile-edit', ['only' => ['profile_edit', 'profile_update']]);
+    //     $this->middleware('permission:profile-password', ['only' => ['profile_password', 'profile_update_password']]);
     }
 
     /**
@@ -125,7 +125,6 @@ class UserController extends Controller
         $user = User::find($id);
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
-
         return view('users.edit', compact('user', 'roles', 'userRole'));
     }
 

@@ -12,13 +12,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
+
                 <li <?php if(request()->routeIs('services.contact*')): ?> class="active" <?php endif; ?>><a class="nav-link" href="<?php echo e(route('services.contact')); ?>"><?php echo e(__('Open data')); ?></a></li>
                 <li <?php if(request()->routeIs('rpas')): ?> class="active" <?php endif; ?>><a class="nav-link" href="<?php echo e(route('rpas')); ?>"><?php echo e(__('RPAS')); ?></a></li>
                 <li <?php if(request()->routeIs('servicesPage')): ?> class="active" <?php endif; ?>><a class="nav-link" href="<?php echo e(route('servicesPage')); ?>"><?php echo e(__('Services')); ?></a></li>
                 <li <?php if(request()->routeIs('sampleReceivePage')): ?> class="active" <?php endif; ?>><a class="nav-link" href="<?php echo e(route('sampleReceivePage')); ?>"><?php echo e(__('Sampling points')); ?></a></li>
                 <li <?php if(request()->routeIs('request')): ?> class="active" <?php endif; ?>><a class="nav-link" href="<?php echo e(route('request')); ?>"><?php echo e(__('Request')); ?></a></li>
-                <li <?php if(request()->routeIs('ink')): ?> class="active" <?php endif; ?>><a class="nav-link" href="<?php echo e(route('ink')); ?>"><?php echo e(__('ink')); ?></a></li>
-                
+
+                <?php if(!Auth::guest()): ?>
+                    <li <?php if(request()->routeIs('ink')): ?> class="active" <?php endif; ?>><a class="nav-link" href="<?php echo e(route('ink')); ?>"><?php echo e(__('ink')); ?></a></li>
+                <?php endif; ?>
+
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">

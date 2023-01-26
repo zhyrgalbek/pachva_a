@@ -7,7 +7,7 @@
     border: #366DC7;
 }
 
-.spinnerBlock{
+.spinnerBlock {
     position: fixed;
     top: 0;
     left: 0;
@@ -16,21 +16,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
-.color{
+.color {
     background-color: 'red';
 }
 
-.hide{
+.hide {
     display: none;
 }
-.show{
+
+.show {
     display: block;
 }
 
-th, td {
+th,
+td {
     color: black;
 }
 
@@ -39,11 +41,11 @@ th, td {
     margin: 5px auto;
 }
 
-.input-group{
+.input-group {
     position: relative;
 }
 
-.list-group{
+.list-group {
     position: absolute;
     top: 36px;
     left: 0;
@@ -54,6 +56,19 @@ th, td {
     border-bottom-right-radius: 30px;
 }
 
-.list-group .list-group-item{
+.list-group .list-group-item {
     border: none;
+}
+
+.list-group .list-group-item:hover {
+    background-color: rgb(224, 224, 224);
+}
+
+.form_header,
+.enterINK {
+    text-align: center;
+}
+
+.list-group .list-group-item.activeINK {
+    background-color: rgb(224, 224, 224);
 }

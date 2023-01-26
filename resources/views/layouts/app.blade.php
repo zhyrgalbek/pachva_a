@@ -26,20 +26,16 @@
     <script src="https://unpkg.com/imask"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
     <script src="../../../lib/leaflet.browser.print.min.js"></script>
-    
-    
+    <script src="es6-promise.auto.min.js"></script>
+    <script src="jspdf.min.js"></script>
+    <script src="html2canvas.min.js"></script>
+    <script src="html2pdf.min.js"></script>
 </head>
 
 <body class="{{str_replace('.', '-', Route::currentRouteName())}} @guest guest @else logged-in @endguest" data-sidebar-position="left" data-sidebar-behavior="sticky">
     <div id="app">
-        @guest
-        @include('layouts.navbarGuest')
-        @yield('content')
-        @if(request()->routeIs('services.contact'))
-        @include('openData.openData')
-        @endif
-        @include('layouts.footer')
-        @else
+        {{-- @guest --}}
+        @if(Auth::user() && Auth::user()->hasRole('admin'))
         <div class="wrapper">
             @include('layouts.sidebar')
             <div class="main">
@@ -47,17 +43,23 @@
                 <main class="content">
                     @yield('content')
                 </main>
-                @include('layouts.footer')
             </div>
         </div>
-        @endguest
-        @stack('page-modals')
-        @include('layouts.modals')
+        @else
+        @include('layouts.navbarGuest')
+        @yield('content')
+        @if(request()->routeIs('services.contact'))
+        @include('openData.openData')
+        @endif
+        @include('layouts.footer')
+        <!-- @stack('page-modals') -->
+        <!-- @include('layouts.modals') -->
         <div id="layout-preloader" class="d-none">
             <div class="spinner-border text-primary" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
+        @endif
     </div>
     @stack('page-scripts')
 </body>
