@@ -20,6 +20,7 @@
 
     <div class="navbar-collapse collapse">
         <ul class="navbar-nav navbar-align">
+            <?php if(Auth::user()): ?>
             <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link user-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     <div class="row align-items-center vertical" data-tooltip="tooltip" data-placement="bottom" title="<?php echo e(__('User')); ?>">
@@ -47,6 +48,7 @@
 
                 </div>
             </li>
+            <?php endif; ?>
             <li class="nav-item dropdown nav-item-delimiter">
                 <div class="row">
                     <div class="offset-6 border-left pl-3">&nbsp;</div>

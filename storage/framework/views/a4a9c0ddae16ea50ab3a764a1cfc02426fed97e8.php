@@ -1,15 +1,15 @@
 
 <?php $__env->startSection('content'); ?>
-<!-- <ink-component></ink-component> -->
 <div class="container content">
     <div id="form_ink">
-        <h4 class="my-3 form_header">Электронная выписка - это официальный документ, удостоверяющий права правообладателя</h2>
-        <p class="form_header_text">а также подтверждающий характеристики земельного участка, как объекта недвижимости.</p>
-        <form action="#" class="form hide">
+        <h4 class="my-3 form_header">Электронная выписка - это официальный документ, удостоверяющий права правообладателя, а также подтверждающий характеристики земельного участка, как объекта недвижимости.</h4>
+        <p class="enterINK">*Для получения электронной выписки нужно ввести ИНК земельного участка.</p>
+        <form action="#" class="form">
             <div class="form__block">
                 <label for="#" class="input__label">Введите ИНК</label>
                 <div class="input-group">
                     <input type="text" class="form-control" id="ink" required placeholder="" autocomplete="off" aria-label="Recipient's username" aria-describedby="basic-addon2" v-model="ink">
+                    <!-- value="<?php echo e(isset($ink) ? $ink : ''); ?>" -->
                     <div class="invalid-feedback" id="error">
                     </div>
                 </div>
@@ -18,25 +18,18 @@
         </form>
     </div>
     <div class="document hide" id="document">
-        <div class="wrapper-document">
+        <div class="wrapper-document" id="document_wrap">
             <nav class="navbar-document">
-                <!-- <img class="giprozem_logo" src="<?php echo e(asset('/images/document/giprozem-logo.png')); ?>" alt="giprozem-logo"> -->
                 <img class="giprozem_logo" src="/images/document/giprozem-logo.png" alt="giprozem-logo">
                 <div class="title">
-                    <div>
-                        <h1>Электронная выписка</h1>
-                        <h3>на элементарный участок</h3>
-                    </div>
+                    <div>Электронная выписка</div>
+                    <div>на элементарный участок</div>
                 </div>
                 <div class="qr_code">
                     <div id="qrcode"></div>
+                    <div class="date" id="date"></div>
                 </div>
             </nav>
-            <div class="date_num">
-                <!-- <div class="num">№ 00123</div> -->
-                <!-- <br> -->
-                <div class="date" id="date">Дата: 01.01.2000</div>
-            </div>
             <div class="table_data">
                 <table class="table table-striped table-hover">
                     <thead>
@@ -44,15 +37,14 @@
                             <p class="table_title">Информация о земельном участке.</p>
                         </tr>
                     </thead>
-                    <hr>
                     <tbody>
                         <tr>
                             <th scope="row">Идентификационный номер контура (ИНК)</th>
-                            <td id="ink_code">417-02-205-825-02-1020-1004</td>
+                            <td id="ink_code"></td>
                         </tr>
                         <tr>
                             <th scope="row">ЕНИ код</th>
-                            <td id="eni_code">7-02-10-4444-1010-02-123</td>
+                            <td id="eni_code"></td>
                         </tr>
                         <tr>
                             <th scope="row">Место расположение:</th>
@@ -60,15 +52,15 @@
                         </tr>
                         <tr>
                             <td class="land_address">Адрес участка</td>
-                            <td id="asr_address">Чуйская обл., Аламудунский район</td>
+                            <td id="asr_address"></td>
                         </tr>
                         <tr>
                             <td class="land_address">Долгота</td>
-                            <td id="longitude">78.12157110607144</td>
+                            <td id="longitude"></td>
                         </tr>
                         <tr>
                             <td class="land_address">Широта</td>
-                            <td id="latitude">42.613751791719494</td>
+                            <td id="latitude"></td>
                         </tr>
                         <tr>
                             <th scope="row">Данные о собственнике:</th>
@@ -76,55 +68,51 @@
                         </tr>
                         <tr>
                             <td class="owner_info">ФИО</td>
-                            <td id="owner_info">Асанов Үсөн</td>
+                            <td id="owner_info"></td>
                         </tr>
                         <tr>
                             <td class="inn_pin">ИНН</td>
-                            <td id="inn_pin">20101200200102</td>
+                            <td id="inn_pin"></td>
                         </tr>
                         <tr>
                             <th scope="row">Форма собственности</th>
-                            <td id="property_form">Государственная собственность</td>
+                            <td id="property_form"></td>
                         </tr>
                         <tr>
                             <th scope="row">Правоудостоверяющий документ</th>
-                            <td id="doc_enttitlement">Удостоверение на право временного пользования земельным участком или договор аренды</td>
+                            <td id="doc_enttitlement"></td>
                         </tr>
                         <tr>
                             <th scope="row">Категория земли</th>
-                            <td id="land_ctg">Земли сельскохозяйственного назначения</td>
+                            <td id="land_ctg"></td>
                         </tr>
                         <tr>
                             <th scope="row">Земельное угодье</th>
-                            <td>Сельскохозяйственный вид угодий</td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th scope="row">Целевое назначение</th>
-                            <td id="special_purpose_asr" class="color">Пахота</td>
+                            <td id="special_purpose_asr" class="color"></td>
                         </tr>
                         <tr>
                             <th scope="row">Фактическая площадь земельного участка, кв.м</th>
-                            <td id="square" class="color">28 035.26</td>
+                            <td id="square" class="color"></td>
                         </tr>
-                        <!-- <tr>
-                            <th scope="row">Кадастровая стоимость, сом</th>
-                            <td>100 000</td>
-                        </tr> -->
                         <tr>
                             <th scope="row">Вид культуры (в текущее время)</th>
-                            <td id="culture" class="color">Пшеница</td>
+                            <td id="culture"></td>
                         </tr>
                         <tr>
                             <th scope="row">Вид культуры (предшественник)</th>
-                            <td>Пшеница</td>
+                            <td></td>
                         </tr>
                         <tr>
-                            <th scope="row">Урожайность (предшественник), кг</th>
-                            <td id="crop_yield" class="color">2 000</td>
+                            <th scope="row">Урожайность (предшественник), ц</th>
+                            <td id="crop_yield" class="color"></td>
                         </tr>
                         <tr>
                             <th scope="row">Предварительная стоимость урожая, сом</th>
-                            <th>5 000 000</th>
+                            <th id="cultureValue"></th>
                         </tr>
                     </tbody>
                 </table>
@@ -134,7 +122,7 @@
             </div>
         </div>
         <div class="btn_wrap">
-            <button id="pdf_btn" type="submit" class="btn btn-primary" onclick="generatePDF()">
+            <button id="pdf_btn" type="submit" class="btn btn-primary">
                 Скачать PDF
             </button>
         </div>
@@ -159,8 +147,13 @@
         var paramsString = document.location.search; // ?page=4&limit=10&sortby=desc  
         var searchParams = new URLSearchParams(paramsString);
 
+        // if (input.value) {
+        //     console.log('ok')
+        //     postQql(input.value, doc, form)
+        // }
+
         if (searchParams.get("ink") !== null) {
-            postQql(searchParams.get("ink"), responseData, doc, form)
+            postQql(searchParams.get("ink"), doc, form)
         }
 
         var maskOptions = {
@@ -174,8 +167,8 @@
                 input.classList.remove('error');
             }
             if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-                klavisha = e.key;
-                moveKey(klavisha, input)
+                pressKey = e.key;
+                moveKey(pressKey, input)
                 return
             }
             getInk(input, input.value, doc, form)
@@ -184,7 +177,7 @@
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             if (input.value.length < 21) {
-                error.innerText = 'Ваш инк меньше 21';
+                error.innerText = 'ИНК должен состоять из 21 цифры';
                 input.classList.add('error');
                 return
             }
@@ -194,43 +187,70 @@
             }
             postQql(input.value, doc, form)
         })
-        $('#pdf_btn').click(function() {
+
+        var button = document.getElementById("pdf_btn");
+        var brakePage = document.getElementsByClassName("map_content");
+        var navBar = document.getElementsByClassName("navbar");
+        var btnExport = document.getElementsByClassName("btn_wrap");
+        var footer = document.getElementsByTagName("footer");
+        var section = document.getElementsByClassName("copyright");
+
+        function hideElements() {
+            navBar[0].classList.add('hide_nav');
+            footer[0].classList.add('hide_footer');
+            section[0].classList.add('hide_section');
+            btnExport[0].classList.add('hide_btn');
+        }
+
+        function showElements() {
+            navBar[0].classList.remove('hide_nav');
+            footer[0].classList.remove('hide_footer');
+            section[0].classList.remove('hide_section');
+            btnExport[0].classList.remove('hide_btn');
+        }
+
+        button.addEventListener("click", async function() {
+            await hideElements();
             window.print();
-            pageBreak: {
-                after: '.table_data'
-            };
+            showElements();
         });
-        L.control.browserPrint().addTo(map);
+
+        let i = -1;
+
+        function moveKey(pressKey, input) {
+            const ul = document.querySelector('.list-group');
+            let max = ul.childNodes.length - 1;
+            for (let i = 0; i <= max; i++) {
+                ul.childNodes[i].classList.remove('activeINK');
+            }
+            if (pressKey === 'ArrowDown') {
+                i++;
+                if (i > max) {
+                    i = 0;
+                }
+                ul.childNodes[i].classList.add('activeINK');
+                input.value = ul.childNodes[i].innerText;
+            }
+            if (pressKey === 'ArrowUp') {
+                i--;
+                if (i < 0) {
+                    i = max;
+                }
+                ul.childNodes[i].classList.add('activeINK');
+                input.value = ul.childNodes[i].innerText;
+            }
+        }
+    });
+
+    window.addEventListener('click', function(e) {
+        const input = document.getElementById('ink');
+        const oldUl = document.querySelector('.list-group')
+
+        if (e.target.className !== 'list-group-item' && oldUl) {
+            input.parentElement.removeChild(oldUl);
+        }
+
     })
-
-    let i = -1;
-
-    function moveKey(klavisha, input) {
-        const ul = document.querySelector('.list-group');
-        let max = ul.childNodes.length - 1;
-        for (let i = 0; i <= max; i++) {
-            ul.childNodes[i].classList.remove('activeINK');
-        }
-        if (klavisha === 'ArrowDown') {
-            i++;
-            if (i > max) {
-                i = 0;
-            }
-            // console.log(ul.childNodes[i]);
-            ul.childNodes[i].classList.add('activeINK');
-            input.value = ul.childNodes[i].innerText;
-        }
-        if (klavisha === 'ArrowUp') {
-            i--;
-            if (i < 0) {
-                i = max;
-            }
-            // console.log(ul.childNodes[i]);
-            ul.childNodes[i].classList.add('activeINK');
-            input.value = ul.childNodes[i].innerText;
-        }
-        console.log(i)
-    }
 
     function addText(input, text, doc, form) {
         input.value = text;
@@ -260,19 +280,16 @@
         input.parentElement.append(ul)
     }
 
-
     async function getInk(input, text, doc, form) {
         try {
             const response = await fetch(`http://185.138.184.8:8111/search_ink_hub/?search=${text}`);
+
             if (response.status !== 200) {
                 throw new Error('error');
             }
             const data = await response.json()
-            // console.log(data.list_ink_code)
             renderUl(input, data.list_ink_code, doc, form)
-        } catch (error) {
-            console.log(error)
-        }
+        } catch (error) {}
     }
 
     async function postQql(ink, doc, form) {
@@ -308,21 +325,36 @@
                 })
             })
             if (!response.ok) {
-                throw new Error('error')
+                throw new Error('failed to fetch')
             }
             const data = await response.json()
             if (data.data.hub_landinfo.length === 0) {
                 throw new Error('404');
             }
-            // console.log(data.data.hub_landinfo.length)
             spinnerBlock.classList.add('hide');
             doc.classList.remove('hide');
             form.style.display = 'none';
             loadMap(data)
         } catch (error) {
             spinnerBlock.classList.add('hide');
+            if (TypeError == "Failed to fetch") {
+                Toastify({
+                    text: "Ошибка сервера!",
+                    duration: 3000,
+                    className: "rejected",
+                    destination: "https://github.com/apvarun/toastify-js",
+                    newWindow: true,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: "center", // `left`, `center` or `right`
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    onClick: function() {} // Callback after click
+                }).showToast();
+                return
+            }
+
             Toastify({
-                text: "такой ИНК не существует!",
+                text: "Такой ИНК не существует!",
                 duration: 3000,
                 className: "rejected",
                 destination: "https://github.com/apvarun/toastify-js",
@@ -331,16 +363,22 @@
                 gravity: "top", // `top` or `bottom`
                 position: "center", // `left`, `center` or `right`
                 stopOnFocus: true, // Prevents dismissing of toast on hover
-                // style: {
-                //     background: "linear-gradient(to right, red, red)",
-                // },
                 onClick: function() {} // Callback after click
             }).showToast();
-            console.log(error)
         }
-
     }
 
+    function PolygonCenter(arr) {
+        let result = [];
+        let x = 0;
+        let y = 0;
+        for (let i = 0; i < arr.length; i++) {
+            x += Number(arr[i][0]);
+            y += Number(arr[i][1]);
+        }
+        result = [x / arr.length, y / arr.length];
+        return result
+    }
 
     function putData(elem, text) {
         document.getElementById(elem).innerHTML = text
@@ -350,6 +388,7 @@
         const dataInfo = data.data.hub_landinfo[0]
         const polygon = dataInfo.main_map.coordinates[0]
         const date = new Date()
+        let result = PolygonCenter(polygon);
 
         putData('ink_code', dataInfo.ink_code)
         putData('eni_code', dataInfo.eni_code)
@@ -367,22 +406,38 @@
         putData('crop_yield', dataInfo.crop_yield)
         putData('date', date.toLocaleDateString())
 
-
-
-
-        // let map = L.map('map_document').setView([dataInfo.latitude, dataInfo.longitude], 14)
-        let map = L.map('map_document').setView([polygon[0][1], polygon[0][0]], 14)
+        let cultureName = ['Пшеница', 'barley', 'corn', 'rice', 'sugar_beet', 'raw_cotton',
+            'tobacco', 'oil_crops', 'potato', 'vegetables', 'food_melons', 'Яблоко', 'grapes'
+        ];
+        let centnerPerHectare = [22, 20, 63, 35, 373, 31, 24, 11, 166, 192, 217, 49, 15];
+        let price = [25, 21, 22, 130, 10, 90, 75, 45, 40, 30, 30, 150, 100];
+        let output = cultureName.map((c, i) => ({
+            name: c,
+            centnerPerHectare: centnerPerHectare[i],
+            price: price[i]
+        }));
+        let a = output;
+        let cultureValue = '';
+        for (const item of a) {
+            if (item.name.includes(dataInfo.culture) == true) {
+                let m = item.centnerPerHectare;
+                let s = dataInfo.square;
+                let p = item.price;
+                cultureValue = s * m * p / 100;
+            }
+        }
+        putData('cultureValue', Math.round(cultureValue).toLocaleString())
+        let map = L.map('map_document').setView(result.reverse(), 16)
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map)
 
-        var qrcode = new QRCode('qrcode',
-            `http://192.168.0.151:3000/ink?ink=${String(dataInfo.ink_code)}`)
+        var qrcode = new QRCode('qrcode', `http://192.168.0.151:3000/ink?ink=${String(dataInfo.ink_code)}`)
         var states = [{
             'type': 'Feature',
             'properties': {
-                'party': 'Republican'
+                'party': 'Agro_land'
             },
             'geometry': {
                 'type': 'Polygon',
@@ -395,7 +450,7 @@
         L.geoJSON(states, {
             style: function(feature) {
                 switch (feature.properties.party) {
-                    case 'Republican':
+                    case 'Agro_land':
                         return {
                             color: '#ff0000'
                         }

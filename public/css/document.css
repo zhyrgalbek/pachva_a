@@ -39,12 +39,12 @@
     margin-top: 30px;
 }
 
-.title>div:first-child {
+.title > div:first-child {
     font-size: 30px;
     font-weight: 600;
 }
 
-.title>div:last-child {
+.title > div:last-child {
     font-size: 20px;
     font-weight: 600;
 }
@@ -70,13 +70,13 @@
     margin: 0 30px;
 }
 
-table>tbody .land_address,
-table>tbody .inn_pin,
-table>tbody .owner_info {
+table > tbody .land_address,
+table > tbody .inn_pin,
+table > tbody .owner_info {
     padding-left: 10%;
 }
 
-table>tbody {
+table > tbody {
     line-height: 1.4;
 }
 
@@ -88,7 +88,7 @@ table>tbody {
     padding-top: 20px;
 }
 
-#qrcode>img {
+#qrcode > img {
     width: 80px;
     height: 80px;
 }
@@ -105,7 +105,7 @@ table>tbody {
     padding-left: 0;
 }
 
-@media (max-width: 576px) {
+@media only screen and (max-width: 576px) {
     .form {
         width: 90%;
     }
@@ -125,11 +125,11 @@ table>tbody {
         margin-top: 0;
     }
 
-    .title>p {
+    .title > p {
         font-size: 20px;
     }
 
-    .title>span {
+    .title > span {
         font-size: 15px;
     }
 
@@ -163,7 +163,7 @@ table>tbody {
         margin: 0;
     }
 
-    #qrcode>img {
+    #qrcode > img {
         width: 50px;
         height: 50px;
     }
@@ -185,12 +185,21 @@ table>tbody {
         font-size: 1rem;
     }
 
-    .title>div:first-child {
+    .title > div:first-child {
         font-size: 20px;
     }
 
-    .nav-flag, .nav-icon {
+    .nav-flag,
+    .nav-icon {
         font-size: 1rem;
+    }
+
+    #qrcode > canvas {
+        width: 50px !important;
+        height: 50px !important;
+    }
+    .btn_wrap {
+        display: none;
     }
 }
 
@@ -210,11 +219,11 @@ table>tbody {
         margin-top: 20px;
     }
 
-    .title>p {
+    .title > p {
         font-size: 25px;
     }
 
-    .title>span {
+    .title > span {
         font-size: 20px;
     }
 
@@ -247,7 +256,7 @@ table>tbody {
         margin: 25px;
     }
 
-    #qrcode>img {
+    #qrcode > img {
         width: 70px;
         height: 70px;
     }
@@ -275,7 +284,6 @@ table>tbody {
     .table {
         width: 98%;
     }
-
 
     #map_document {
         margin-bottom: 10px;

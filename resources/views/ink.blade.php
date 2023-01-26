@@ -433,7 +433,7 @@
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map)
 
-        var qrcode = new QRCode('qrcode', `http://192.168.0.170:3000/ink?ink=${String(dataInfo.ink_code)}`)
+        var qrcode = new QRCode('qrcode', `http://192.168.0.151:3000/ink?ink=${String(dataInfo.ink_code)}`)
         var states = [{
             'type': 'Feature',
             'properties': {
